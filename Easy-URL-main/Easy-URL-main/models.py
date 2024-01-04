@@ -1,7 +1,7 @@
 from .extensions import database
 from datetime import datetime
 
-class BlogPost(database.Model):
+class URL_shortner(database.Model):
     id = database.Column(database.Integer, primary_key=True)
     title = database.Column(database.String(100), nullable=False)
     content = database.Column(database.Text, nullable=False)
