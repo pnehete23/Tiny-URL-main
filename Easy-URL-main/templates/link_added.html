@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Shortened URL</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .link-details {
+            background-color: #e7e7e7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>URL Shortening Result</h1>
+        <div class="link-details">
+            <p>Original Link: <a href="{{ original_url }}" target="_blank">{{ original_url }}</a></p>
+            <p>Shortened Link: <a href="{{ url_for('short.redirect_to_url', short_url=new_link, _external=True) }}" target="_blank">{{ url_for('short.redirect_to_url', short_url=new_link, _external=True) }}</a></p>
+        </div>
+        <button class="button" onclick="copyToClipboard()">Copy Shortened URL</button>
+        <a href="/" class="button">Shorten Another URL</a>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            var dummy = document.createElement('input'),
+            text = window.location.href;
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            alert("URL Copied: " + text);
+        }
+    </script>
+</body>
+</html>
